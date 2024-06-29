@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
+
+// imput src\app\components\sign-in\sign-in.component.html
 export class SignInComponent {
   username: string = '';
   password: string = '';
@@ -31,9 +33,14 @@ export class SignInComponent {
 
     // Crear usuario
     const user: User = {
-      username: this.username,
-      password: this.password
+      nombre: this.username,
+      email: 'xkT5S@example.com',
+      contraseña: this.password,
+      telefono: 888,
+      rol: 'empleado'
     }
+
+    console.log(user);
 
     this._userServices.signIn(user).subscribe(data => {
       this.toastr.success(`Usuario  ${this.username} registrado`, 'Éxito');
