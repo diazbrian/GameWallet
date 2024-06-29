@@ -15,10 +15,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint; // file:environment.ts
-    this.myApiUrl = '/api/users/';
+    this.myApiUrl = '/api/usuario/';
   }
 
-  // metodo para registrar usuario
+  // metodo para registrar usuario (post)
   signIn(user: User): Observable<any> {
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user);
   }
