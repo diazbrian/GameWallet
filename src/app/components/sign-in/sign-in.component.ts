@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,6 +16,7 @@ export class SignInComponent {
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
+  loading: boolean = false;
 
   constructor(private toastr: ToastrService, private _userServices: UserService, private router: Router) { }
 
@@ -42,9 +44,28 @@ export class SignInComponent {
 
     console.log(user);
 
-    this._userServices.signIn(user).subscribe(data => {
-      this.toastr.success(`Usuario  ${this.username} registrado`, 'Éxito');
-      this.router.navigate(['/login']);
+    // spinner (animacion cargando)
+    this.loading = true;
+
+    this._userServices.signIn(user).subscribe({
+      next: (v) => {
+        this.loading = false;
+        this.toastr.success(`Usuario  ${this.username} registrado`, 'Éxito');
+        this.router.navigate(['/login']);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.loading = false;
+        this.msgError(err);
+      },
+      complete: () => console.info('complete')
     })
+  }
+
+  msgError(err: HttpErrorResponse) {
+    if (err.error.message) {
+      this.toastr.error(err.error.message, 'Error');
+    } else {
+      this.toastr.error('Error desconocido', 'Error');
+    }
   }
 }
