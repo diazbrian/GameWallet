@@ -4,6 +4,7 @@ import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,7 +19,12 @@ export class SignInComponent {
   confirmPassword: string = '';
   loading: boolean = false;
 
-  constructor(private toastr: ToastrService, private _userServices: UserService, private router: Router) { }
+  constructor(
+    private toastr: ToastrService,
+    private _userServices: UserService,
+    private router: Router,
+    private _errorService: ErrorService
+  ) { }
 
   ngOnInit(): void { }
 
@@ -55,17 +61,9 @@ export class SignInComponent {
       },
       error: (err: HttpErrorResponse) => {
         this.loading = false;
-        this.msgError(err);
+        this._errorService.msgError(err)
       },
       complete: () => console.info('complete')
     })
-  }
-
-  msgError(err: HttpErrorResponse) {
-    if (err.error.message) {
-      this.toastr.error(err.error.message, 'Error');
-    } else {
-      this.toastr.error('Error desconocido', 'Error');
-    }
   }
 }
