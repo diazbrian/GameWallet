@@ -2,22 +2,58 @@
   <div *ngIf="!loading" class="body">
     <img class="logo" src="../../../assets/img/usuario.png" alt="">
     <h1>Registrarse</h1>
+
     <div class="form-floating mb-3 mt-3">
       <input type="text" [(ngModel)]="username" class="form-control" placeholder="Ingrese su usuario">
       <label>Usuario</label>
     </div>
+
+    <div class="form-floating mb-3">
+      <input type="email" [(ngModel)]="email" class="form-control" placeholder="Ingrese su email">
+      <label>Email</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <div class="input-group">
+        <select [(ngModel)]="areaCode" class="form-select" aria-label="Seleccione el código de área">
+          <option value="" disabled selected>Código de área</option>
+          <option value="11">11 (Buenos Aires)</option>
+          <option value="261">261 (Mendoza)</option>
+          <option value="351">351 (Córdoba)</option>
+          <option value="388">388 (Jujuy)</option>
+          <option value="3888">3888 (San Pedro de Jujuy)</option>
+          <option value="387">387 (Salta)</option>
+        </select>
+        <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Teléfono">
+      </div>
+      <label></label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <select [(ngModel)]="rol" class="form-select" aria-label="Seleccione el rol">
+        <option value="" disabled selected>Seleccione el rol</option>
+        <option value="admin">Admin</option>
+        <option value="empleado">Empleado</option>
+      </select>
+      <label>Rol</label>
+    </div>
+
     <div class="form-floating mb-3">
       <input type="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese su contraseña">
       <label>Password</label>
     </div>
+
     <div class="form-floating mb-3">
       <input type="password" [(ngModel)]="confirmPassword" class="form-control" placeholder="Ingrese su contraseña">
       <label>Repeat Password</label>
     </div>
+
     <div class="d-grid gap-2 mb-3">
-      <button type="button" (click)="addUser()" class="btn btn-primary btn-lg" >Ingresar</button>
+      <button type="button" (click)="addUser()" class="btn btn-primary btn-lg">Ingresar</button>
     </div>
+
     <a routerLink="/login">Volver</a>
+
   </div>
   <app-spinner *ngIf="loading"></app-spinner>
 </div>

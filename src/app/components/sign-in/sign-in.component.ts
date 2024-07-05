@@ -16,6 +16,10 @@ import { ErrorService } from '../../services/error.service';
 export class SignInComponent {
   username: string = '';
   password: string = '';
+  email: string = '';
+  rol: string = '';
+  telefono: string = '';
+  areaCode: string = '';
   confirmPassword: string = '';
   loading: boolean = false;
 
@@ -28,6 +32,7 @@ export class SignInComponent {
 
   ngOnInit(): void { }
 
+  // TODO: Validar todos los campos
   addUser() {
     // Validacion
     if (this.username == '' || this.password == '' || this.confirmPassword == '') {
@@ -39,13 +44,17 @@ export class SignInComponent {
       return;
     }
 
+    const fullTel = this.areaCode + this.telefono;
+
+
     // Crear usuario
     const user: User = {
       nombre: this.username,
-      email: 'xkT5S@example.com',
+      email: this.email,
       contraseña: this.password,
-      telefono: 888,
-      rol: 'empleado'
+      // Convertir a tipo number
+      telefono: parseInt(fullTel),
+      rol: this.rol
     }
 
     console.log(user);
