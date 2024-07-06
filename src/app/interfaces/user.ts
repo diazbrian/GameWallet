@@ -12,6 +12,6 @@ export interface Usuario {
   email: string;
   contraseña: string;
   telefono: number;
-  creacion: Date;
+  creacion: string | null;
   rol: string;
 }

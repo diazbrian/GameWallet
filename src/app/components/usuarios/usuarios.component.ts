@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User, Usuario } from '../../interfaces/user';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css'
+  styleUrl: './usuarios.component.css',
+  providers: [DatePipe]
+
 })
 export class UsuariosComponent {
 
   // listUsers se usa en  './usuarios.component.html'
   listUsers: Usuario[] = [];
 
-  constructor( private _userServices: UserService){}
+  constructor(private _userServices: UserService, private datePipe: DatePipe){}
 
   ngOnInit(): void {
     this.getUsers();
@@ -20,8 +23,12 @@ export class UsuariosComponent {
 
   getUsers(){
     this._userServices.getUsers().subscribe(data => {
-      this.listUsers = data;
-      console.log(data);
+      this.listUsers = data.map(user => {
+        return {
+        ...user,
+        creacion: this.datePipe.transform(user.creacion, 'yyyy-MM-dd HH:mm:ss')
+        };
+      });
     });
   }
 }
