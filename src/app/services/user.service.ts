@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { User } from '../interfaces/user';
+import { User, Usuario } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -23,7 +23,21 @@ export class UserService {
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user);
   }
 
+  // TODO: Token de sesion
   login(user: any): Observable<any> {
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}login/`, user);
   }
+
+  getUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.myAppUrl}${this.myApiUrl}usuarios/`);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.myAppUrl}${this.myApiUrl}borrar/${id}/`);
+  }
+
+  updateUser(id: number, user: User): Observable<any> {
+    return this.http.put(`${this.myAppUrl}${this.myApiUrl}actualizar/${id}/`, user);
+  }
+
 }
