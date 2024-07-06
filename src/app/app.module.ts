@@ -18,6 +18,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './components/footer/footer.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { ToastrModule } from 'ngx-toastr';
     SignInComponent,
     DashboardComponent,
     NavbarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FooterComponent,
+    UsuariosComponent,
+    TarjetasComponent
   ],
   imports: [
     BrowserModule,
