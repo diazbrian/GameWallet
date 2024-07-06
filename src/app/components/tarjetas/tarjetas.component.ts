@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TarjetaService } from '../../services/tarjeta.service';
 import { Tarjeta } from '../../interfaces/tarjeta';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tarjetas',
@@ -44,6 +45,10 @@ export class TarjetasComponent {
       console.log('Saldo recargado:', response);
       this.obtenerTarjetas();
     });
+  }
+
+  mostrarAlerta() {
+    Swal.fire('¡Hola Mundo!', 'Este es un mensaje de ejemplo', 'success');
   }
 
 
