@@ -7,3 +7,8 @@ export interface Tarjeta {
   transacciones: Transaccion[];
   creacion: Date;
 }
+
+export interface Tarjeta {
+  saldo: number;
+  card_number: number;
+}

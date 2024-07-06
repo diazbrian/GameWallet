@@ -1,1 +1,52 @@
-<p>tarjetas works!</p>
+<app-navbar></app-navbar>
+<!-- src/app/components/tarjeta/tarjeta.component.html -->
+<div class="container">
+    <h2>Lista de Tarjetas Demo</h2>
+    <ul class="list-group">
+      <li *ngFor="let tarjeta of tarjetas" class="list-group-item">
+        Número de tarjeta: {{ tarjeta.card_number }} - Saldo: {{ tarjeta.saldo }}
+      </li>
+    </ul>
+  
+    <h2>Crear Nueva Tarjeta</h2>
+    <form (submit)="crearTarjeta()" class="mb-3">
+      <div class="mb-3">
+        <label for="saldo" class="form-label">Saldo:</label>
+        <input id="saldo" [(ngModel)]="saldo" name="saldo" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Número de Tarjeta:</label>
+        <input id="cardNumber" [(ngModel)]="cardNumber" name="cardNumber" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Tarjeta</button>
+    </form>
+  
+    <h2>Descontar Saldo</h2>
+    <form (submit)="descontarSaldo()" class="mb-3">
+      <div class="mb-3">
+        <label for="idTarjeta" class="form-label">ID de Tarjeta:</label>
+        <input id="idTarjeta" [(ngModel)]="idTarjeta" name="idTarjeta" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="cantidadDescontar" class="form-label">Cantidad a Descontar:</label>
+        <input id="cantidadDescontar" [(ngModel)]="cantidad" name="cantidadDescontar" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Descontar Saldo</button>
+    </form>
+  
+    <h2>Recargar Saldo</h2>
+    <form (submit)="recargarSaldo()" class="mb-3">
+      <div class="mb-3">
+        <label for="idTarjetaRecargar" class="form-label">ID de Tarjeta:</label>
+        <input id="idTarjetaRecargar" [(ngModel)]="idTarjeta" name="idTarjetaRecargar" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="cantidadRecargar" class="form-label">Cantidad a Recargar:</label>
+        <input id="cantidadRecargar" [(ngModel)]="cantidad" name="cantidadRecargar" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Recargar Saldo</button>
+    </form>
+
+    <button class="btn btn-primary" (click)="mostrarAlerta()">Mostrar Alerta</button>
+  </div>
+  
