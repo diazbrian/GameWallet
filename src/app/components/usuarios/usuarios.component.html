@@ -10,6 +10,7 @@
                 <tr>
                   <th><span>Usuario</span></th>
                   <th><span>Creado</span></th>
+                  <th><span>Rol</span></th>
                   <th class="text-center"><span>Telefono</span></th>
                   <th><span>Email</span></th>
                   <th>&nbsp;</th>
@@ -20,9 +21,10 @@
                   <td>
                     <img src="../../../assets/img/profile-circle.256x256.png" width="40px" alt="">
                     <a href="#" class="user-link">{{ user.nombre }}</a>
-                    <span class="user-subhead">{{ user.rol }}</span>
+                    <span class="user-subhead"> id: {{ user.id }}</span>
                   </td>
                   <td>{{ user.creacion }}</td>
+                  <td>{{ user.rol }}</td>
                   <td class="text-center">
                     <span class="label label-default">{{ user.telefono }}</span>
                   </td>
@@ -30,12 +32,44 @@
                     <a href="#">{{ user.email }}</a>
                   </td>
                   <td style="width: 20%;">
-                    <button class="btn btn-success btn-sm" (click)="editUser(user)">
+                    <!-- <button class="btn btn-success btn-sm" (click)="editUser(user)"> -->
+                    <button class="btn btn-success btn-sm" (click)="toggleEditForm(user)">
                       <i class="bi bi-pencil-fill"></i>
                     </button>
                     <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">
                       <i class="bi bi-trash-fill"></i>
                     </button>
+                  </td>
+                </tr>
+                <tr *ngIf="editingUser ">
+                  <td colspan="8">
+                    <div class="form-group">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" [(ngModel)]="editingUser.nombre" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" [(ngModel)]="editingUser.email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Contraseña</label>
+                      <input type="text" [(ngModel)]="password" class="form-control" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group">
+                      <label for="telefono">Teléfono</label>
+                      <input type="number" [(ngModel)]="editingUser.telefono" class="form-control"
+                        placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                      <label for="rol">Rol</label>
+                      <select [(ngModel)]="editingUser.rol" class="form-select" aria-label="Seleccione el rol">
+                        <option value="" disabled selected>Seleccione el rol</option>
+                        <option value="admin">Admin</option>
+                        <option value="empleado">Empleado</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-primary btn-sm" (click)="saveUser()">Guardar</button>
+                    <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancelar</button>
                   </td>
                 </tr>
               </tbody>
