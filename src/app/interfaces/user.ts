@@ -5,3 +5,13 @@ export interface User {
   telefono: number;
   rol: string;
 }
+
+export interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  contraseña: string;
+  telefono: number;
+  creacion: Date;
+  rol: string;
+}
