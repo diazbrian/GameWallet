@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container mt-2 text-center">
+  <h2>User</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Fecha de Creacion</th>
+        <th scope="col">Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of listUsers">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.telefono }}</td>
+        <td>{{ user.creacion }}</td>
+        <td>{{ user.rol }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
