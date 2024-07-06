@@ -1,26 +1,49 @@
 <app-navbar></app-navbar>
-<div class="container mt-2 text-center">
-  <h2>User</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefono</th>
-        <th scope="col">Fecha de Creacion</th>
-        <th scope="col">Rol</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of listUsers">
-        <td>{{ user.id }}</td>
-        <td>{{ user.nombre }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.telefono }}</td>
-        <td>{{ user.creacion }}</td>
-        <td>{{ user.rol }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container bootstrap snippets bootdey">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list">
+              <thead>
+                <tr>
+                  <th><span>Usuario</span></th>
+                  <th><span>Creado</span></th>
+                  <th class="text-center"><span>Telefono</span></th>
+                  <th><span>Email</span></th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of listUsers">
+                  <td>
+                    <img src="../../../assets/img/profile-circle.256x256.png" width="40px" alt="">
+                    <a href="#" class="user-link">{{ user.nombre }}</a>
+                    <span class="user-subhead">{{ user.rol }}</span>
+                  </td>
+                  <td>{{ user.creacion }}</td>
+                  <td class="text-center">
+                    <span class="label label-default">{{ user.telefono }}</span>
+                  </td>
+                  <td>
+                    <a href="#">{{ user.email }}</a>
+                  </td>
+                  <td style="width: 20%;">
+                    <button class="btn btn-success btn-sm" (click)="editUser(user)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<app-footer></app-footer>
