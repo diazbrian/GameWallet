@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Tarjeta } from '../interfaces/tarjeta'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,25 @@ export class TarjetaService {
     this.myApiUrl = '/api/tarjeta/';
   }
 
-  getTarjetas() {
-    return this.http.get(this.myAppUrl + this.myApiUrl);
-  }
+    getTarjetas(): Observable<Tarjeta[]> {
+      return this.http.get<Tarjeta[]>(this.myAppUrl + this.myApiUrl);
+    }
 
-  getTarjeta(card_number: number) {
-    return this.http.get(this.myAppUrl + this.myApiUrl + card_number);
-  }
+    getTarjeta(card_number: number): Observable<Tarjeta> {
+      return this.http.get<Tarjeta>(this.myAppUrl + this.myApiUrl + card_number);
+    }
 
+    createTarjeta(saldo: number, card_number: number): Observable<any> {
+      return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, { saldo, card_number });
+    }
+
+    descontarSaldo(id: number, cantidad: number): Observable<any> {
+      const url = `${this.myAppUrl}${this.myApiUrl}descontar`;
+      return this.http.put(url, { id, cantidad });
+    }
+
+    recargarSaldo(id: number, cantidad: number): Observable<any> {
+      const url = `${this.myAppUrl}${this.myApiUrl}recarga`;
+      return this.http.put(url, { id, cantidad });
+    }
 }
