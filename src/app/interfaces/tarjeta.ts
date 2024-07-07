@@ -5,7 +5,7 @@ export interface Tarjeta {
   saldo: number;
   card_number: number;
   transacciones: Transaccion[];
-  creacion: Date;
+  creacion: string | null;
 }
 
 export interface Tarjeta {
