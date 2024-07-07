@@ -38,10 +38,31 @@ export class UsuariosComponent {
     });
   }
 
-  //
-  // editUser(user: Usuario): void {
-  //   this.imputForm(user, user.id);
-  // }
+  openEditModal(user: Usuario) {
+    console.log("aa");
+    const modelDiv = document.getElementById('myModal');
+    if (modelDiv != null) {
+      if (this.editingUser && this.editingUser.id === user.id) {
+
+        // muestra la contrasena actual del usuario en el componente
+        this.password = user.contraseña;
+
+        this.editingUser = null;
+      } else {
+        this.password = user.contraseña;
+        this.editingUser = { ...user };
+      }
+      modelDiv.style.display = 'block';
+      console.log("insi");
+    }
+  }
+
+  closeEditModal() {
+    const modelDiv = document.getElementById('myModal');
+    if (modelDiv != null) {
+      modelDiv.style.display = 'none';
+    }
+  }
 
   deleteUser(user: Usuario): void {
     this.confirmDelMsg(user);
@@ -77,6 +98,7 @@ export class UsuariosComponent {
           icon: "success"
         });
         this.getUsers();
+        this.closeEditModal();
         this.editingUser = null;
       },
       error: (err: HttpErrorResponse) => {
@@ -91,14 +113,9 @@ export class UsuariosComponent {
   }
 
   cancelEdit(): void {
+    this.closeEditModal();
     this.editingUser = null;
   }
-
-  // imputForm(user: User, id: number) {
-  //   user.nombre = "juan";
-  //   console.log(user, id);
-  //   this._userServices.updateUser(id, user).subscribe();
-  // }
 
   // confirmar eliminacion
   confirmDelMsg(user: Usuario) {
