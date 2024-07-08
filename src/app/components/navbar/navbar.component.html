@@ -1,18 +1,31 @@
-<div class="container-fluid bg-body-tertiary">
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="40" height="32">
-        <use xlink:href="#bootstrap"></use>
-      </svg>
-      <span class="fs-4">Game Wallet</span>
+<div class="shadow p-3 mb-3 bg-body-tertiary rounded">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1" routerLink="/dashboard" href="#">Game Wallet
+      <i class="bi bi-controller d-inline-block "></i>
     </a>
-
-    <ul class="nav nav-pills">
-      <li class="nav-item"><a routerLink="/dashboard" routerLinkActive="active" class="nav-link">Inicio</a></li>
-      <li class="nav-item"><a routerLink="/usuarios" routerLinkActive="active" class="nav-link">Usuarios</a></li>
-      <li class="nav-item"><a routerLink="/tarjetas" routerLinkActive="active" class="nav-link">Tarjetas</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Acerca de</a></li>
-      <li class="nav-item"><button class="btn btn-danger" routerLink="/login" type="button">Logout</button></li>
-    </ul>
-  </header>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link mx-lg-3" routerLink="/dashboard" routerLinkActive="active" class="nav-link" aria-current="page" >Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-lg-3" routerLink="/usuarios" routerLinkActive="active"  aria-disabled="true" >Usuario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-lg-3 " routerLink="/tarjetas" routerLinkActive="active" class="nav-link">Tarjeta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-lg-3" href="#" aria-disabled="true">Transaciones</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <a class="login-button" routerLink="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</nav>
 </div>
