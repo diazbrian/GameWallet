@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
+import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
     SpinnerComponent,
     FooterComponent,
     UsuariosComponent,
-    TarjetasComponent
+    TarjetasComponent,
+    TransaccionesComponent
   ],
   imports: [
     BrowserModule,
