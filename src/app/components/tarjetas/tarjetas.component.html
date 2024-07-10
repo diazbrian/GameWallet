@@ -15,7 +15,7 @@
       <th scope="col">Numero</th>
       <th scope="col">Fecha de alta</th>
       <th scope="col">Saldo </th>
-      <th scope="col">Acciones</th> 
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -24,7 +24,7 @@
       <td>{{ tarjeta.creacion }}</td>
       <td> {{ tarjeta.saldo}}</td>
       <td>
-        <button class="btn btn-primary btn-sm" ><i class="bi bi-clock-history"></i> Ver mas</button>
+        <button class="btn btn-primary btn-sm" (click)="editCard(tarjeta)" ><i class="bi bi-currency-dollar"></i> Recargar </button>
       </td>
     </tr>
   </tbody>
