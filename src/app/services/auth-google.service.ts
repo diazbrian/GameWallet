@@ -18,7 +18,6 @@ export class AuthGoogleService {
       clientId: '101527293281-khb21gndaf0ng3tvtdc4vksldoh9kleu.apps.googleusercontent.com',
       redirectUri: window.location.origin + '/dashboard',
       scope: 'openid profile email',
-      clearHashAfterLogin: true,
     }
 
     this.oAuthService.configure(config);
@@ -27,13 +26,13 @@ export class AuthGoogleService {
   }
 
   loginWithGoogle() {
+    console.log('antes de initLoginFlow');
     this.oAuthService.initLoginFlow();
+    console.log('despues de initLoginFlow');
   }
 
   logout() {
     this.oAuthService.logOut();
-    const logoutUrl = `https://accounts.google.com/logout?continue=${encodeURIComponent(window.location.origin + '/login')}`;
-    window.location.href = logoutUrl;
   }
 
   getProfile() {
