@@ -35,7 +35,7 @@
                     <span class="label label-default">{{ user.telefono }}</span>
                   </td>
                   <td>
-                    <a href="#">{{ user.email }}</a>
+                    <a href="mailto:{{ user.email }}">{{ user.email }}</a>
                   </td>
                   <td style="width: 20%;">
                     <button class="btn btn-success btn-sm" (click)="openEditUserForm(user)">
