@@ -1,6 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container bootstrap snippets bootdey">
   <div class="row">
+    <div class="col-md-6 col-12">
+      <h1>Lista de Usuarios</h1>
+    </div>
+    <div class="col-md-6 col-12 text-md-end text-start">
+      <button class="btn btn-primary"> <i class="bi bi-person-plus"></i> Agregar </button>
+    </div>
     <div class="col-lg-12">
       <div class="main-box no-header clearfix">
         <div class="main-box-body clearfix">
@@ -13,7 +19,7 @@
                   <th><span>Rol</span></th>
                   <th class="text-center"><span>Telefono</span></th>
                   <th><span>Email</span></th>
-                  <th>&nbsp;</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,7 +38,7 @@
                     <a href="#">{{ user.email }}</a>
                   </td>
                   <td style="width: 20%;">
-                    <button class="btn btn-success btn-sm" (click)="openEditModal(user)">
+                    <button class="btn btn-success btn-sm" (click)="openEditUserForm(user)">
                       <i class="bi bi-pencil-fill"></i>
                     </button>
                     <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">
@@ -44,49 +50,6 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
-        <button type="button" class="btn-close" (click)="cancelEdit()" data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div *ngIf="editingUser" class="modal-body">
-        <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" [(ngModel)]="editingUser.nombre" class="form-control" placeholder="Nombre">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" [(ngModel)]="editingUser.email" class="form-control" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="password">Contraseña</label>
-          <input type="text" [(ngModel)]="password" class="form-control" placeholder="Contraseña">
-        </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input type="number" [(ngModel)]="editingUser.telefono" class="form-control" placeholder="Teléfono">
-        </div>
-        <div class="form-group">
-          <label for="rol">Rol</label>
-          <select [(ngModel)]="editingUser.rol" class="form-select" aria-label="Seleccione el rol">
-            <option value="" disabled selected>Seleccione el rol</option>
-            <option value="admin">Admin</option>
-            <option value="empleado">Empleado</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="cancelEdit()"
-          data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="saveUser()">Guardar</button>
       </div>
     </div>
   </div>
