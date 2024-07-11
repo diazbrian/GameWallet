@@ -26,9 +26,7 @@ export class AuthGoogleService {
   }
 
   loginWithGoogle() {
-    console.log('antes de initLoginFlow');
     this.oAuthService.initLoginFlow();
-    console.log('despues de initLoginFlow');
   }
 
   logout() {

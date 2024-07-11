@@ -22,7 +22,13 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-    this.successLogin();
+    const profile = this._authGoogleService.getProfile();
+    // NOTA:
+    // se ejecuta solo despues de iniciar sesion con google
+    // despues de la primera vez 'profile' no estara null por que google ya tendra cargado el 'profile' del usuario
+    if (!profile) {
+      this.successLogin();
+    }
   }
 
   successLogin() {
@@ -36,7 +42,6 @@ export class DashboardComponent {
           const user = data.find(user => user.email === email);
           console.log(user)
           if (!user) {
-            console.log('creando Usuario');
             const newUser: User = {
               nombre: fullname,
               email: email,
