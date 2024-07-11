@@ -1,0 +1,30 @@
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #f8f9fa; /* Light background color */
+  padding: 10px 0;
+  font-size: 1.2em;
+}
+
+.marquee {
+  display: inline-block;
+  animation: scroll-left 40s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.compra {
+  color: green;
+  font-weight: bold;
+}
+
+.venta {
+  color: red;
+  font-weight: bold;
+}

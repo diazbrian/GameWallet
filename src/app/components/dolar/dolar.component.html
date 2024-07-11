@@ -1,0 +1,9 @@
+<div class="marquee-container">
+  <div class="marquee">
+    <span *ngFor="let dolar of dolares">
+      Dolar {{ dolar.nombre }}
+      Compra<span class="compra"> ${{ dolar.compra }} &#x25B2;</span>
+      Venta<span class="venta"> ${{ dolar.venta }} &#x25BC;</span>&nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+</div>
