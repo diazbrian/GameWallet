@@ -14,6 +14,8 @@ export class TarjetasComponent {
   tarjetas: Tarjeta[] = [];
   idTarjeta: number = 0;
   cantidad: number = 500;
+  cardNumber: | null = null; 
+  tarjeta: Tarjeta | null = null;
 
   constructor(private tarjetaService: TarjetaService,private datePipe: DatePipe) {}
 
@@ -50,6 +52,23 @@ export class TarjetasComponent {
     });
   }
 
+  searchCard(card_number: number): void {
+    if (card_number !== null && card_number !== undefined && !isNaN(card_number)) {
+      this.tarjetaService.getTarjeta(card_number).subscribe(
+        (data: Tarjeta) => {
+          this.tarjetas = [data];
+          console.log(this.tarjeta);
+        },
+        error => {
+          console.error('Error fetching card:', error);
+          Swal.fire('No se pude encontrar la tarjeta','', 'info');
+        }
+      );
+    } else {
+      Swal.fire('Error', 'Por favor ingrese un número de tarjeta válido', 'error');
+    }
+  }
+  
   openAddCardForm() {
     Swal.fire({
       title: 'Agregar Tarjeta',
