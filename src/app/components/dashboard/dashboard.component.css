@@ -1,0 +1,112 @@
+img {
+  border-radius: var(--bs-border-radius) !important;
+  width: 100% !important;
+  display: block !important;
+  object-fit: scale-down;
+  padding: 0px;
+  margin: 0px;
+}
+.swiper-container {
+  overflow-x: hidden; /* Para ocultar la barra de desplazamiento horizontal */
+  overflow-y: visible; /* Mantener el desplazamiento vertical si es necesario */
+}
+
+.container {
+  width: 100%; /* Ancho completo para ocupar el espacio disponible */
+  display: flex;
+  object-fit: scale-down;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  box-sizing: border-box;
+  perspective: 800px; /* Mueve la perspectiva al contenedor padre */
+  border-radius: 4px;
+}
+
+.card-container {
+  perspective: 800px; /* Mueve la perspectiva al contenedor padre */
+}
+
+.card {
+  width: 100%; /* Ancho completo para ocupar el espacio disponible */
+  max-width: 350px; /* Ancho máximo inicial */
+  height: 200px; /* Altura deseada */
+  margin: 10px; /* Margen entre las tarjetas */
+  border-radius: 6px; /* Borde redondeado */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Sombra */
+  box-sizing: border-box; /* Incluir el borde en el tamaño total */
+  position: relative; /* Posición relativa */
+  transform-style: preserve-3d; /* Mantener la perspectiva 3D */
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición suave */
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  background-color: #128bea;
+  color: #fff;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.card img {
+  width: 100%; /* Ajustamos el tamaño de la imagen al 100% del card */
+  height: 100%; /* Ajustamos el tamaño de la imagen al 100% del card */
+  object-fit: cover; /* Para que la imagen cubra completamente el área del card */
+  border-radius: 6px; /* Ajuste de borde redondeado para la imagen */
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  opacity: 1;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+/* Media Queries para hacer las tarjetas responsivas */
+@media (max-width: 1200px) {
+  .card {
+    max-width: 300px; /* Ancho máximo reducido para pantallas grandes */
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    max-width: 250px; /* Ancho máximo reducido para tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 200px; /* Ancho máximo reducido para dispositivos medianos */
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    max-width: 150px; /* Ancho máximo reducido para dispositivos pequeños */
+  }
+}

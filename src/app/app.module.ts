@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SwiperModule } from 'swiper/angular';
 
 // Animaciones
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { FlipCardFrontComponent } from './components/dashboard/flip-card-front';
+import { FlipCardBackComponent } from './components/dashboard/flip-card-back';
 
 // Modulos
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
+//import { DashboardModule } from './components/dashboard/dashboard.module';
 import { DolarComponent } from './components/dolar/dolar.component';
 
 
@@ -35,6 +39,7 @@ import { DolarComponent } from './components/dolar/dolar.component';
     FooterComponent,
     UsuariosComponent,
     TarjetasComponent,
+    FlipCardFrontComponent, FlipCardBackComponent,
     DolarComponent
   ],
   imports: [
@@ -47,9 +52,11 @@ import { DolarComponent } from './components/dolar/dolar.component';
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    })
-
+    }),
+    //DashboardModule
+    SwiperModule,
   ],
+  exports: [DashboardComponent, FlipCardFrontComponent, FlipCardBackComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

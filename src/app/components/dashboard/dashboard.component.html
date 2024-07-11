@@ -1,2 +1,60 @@
 <app-navbar></app-navbar>
+
+<div class="container">
+  <swiper [config]="config" >
+       <ng-template swiperSlide *ngFor="let slide of slides">
+          <!--<a [href]="slide.link" target="_blank"></a>-->
+           <a target="_blank">
+                <img [src]="slide.image" alt="foto" />
+           </a>
+        </ng-template>
+ </swiper>
+</div>
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-md-4 mb-3">
+      <div class="card-container">
+        <div [ngClass]="toggleProperty ? 'flipped' : ''" class="card">
+          <div class="front">
+            <ng-content select="flip-card-front"></ng-content>
+            <img src="../../../assets/img/background-login2.jfif" class="card-img-top" alt="...">
+            <div class="arrow-icon" (click)="toggle()">
+              <i class="ion-ios-arrow-back"></i>
+            </div>
+          </div>
+          <div class="back">
+            <ng-content select="flip-card-back"></ng-content>
+            <img src="../../../assets/img/background-login3.jfif" class="card-img-top" alt="...">
+            <div class="arrow-icon" (click)="toggle()">
+              <i class="ion-ios-arrow-back"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+      <div class="card-container">
+        <div [ngClass]="toggleProperty ? 'flipped' : ''" class="card">
+          <div class="front">
+            <ng-content select="flip-card-front"></ng-content>
+            <img src="../../../assets/img/background-login2.jfif" class="card-img-top" alt="...">
+            <div class="arrow-icon" (click)="toggle()">
+              <i class="ion-ios-arrow-back"></i>
+            </div>
+          </div>
+          <div class="back">
+            <ng-content select="flip-card-back"></ng-content>
+            <img src="../../../assets/img/background-login3.jfif" class="card-img-top" alt="...">
+            <div class="arrow-icon" (click)="toggle()">
+              <i class="ion-ios-arrow-back"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-footer></app-footer>
