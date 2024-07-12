@@ -97,7 +97,92 @@ export class UsuariosComponent {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-          this.saveUser();
+        this.saveUser();
+      } else {
+        this.editingUser = null;
+        Swal.fire('Operación cancelada', '', 'info');
+      }
+    });
+
+    document.getElementById('showPassword')!.addEventListener('click', function() {
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      const icon = document.getElementById('showPassword') as HTMLElement;
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      }
+    });
+  }
+
+  addUserForm() {
+    Swal.fire({
+      title: 'Agregar Usuario',
+      html: `
+        <form id="addCardForm">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre">
+            <label for="nombre" >Nombre</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" placeholder="Email">
+            <label for="email" >Email</label>
+          </div>
+
+          <div class="form-floating ">
+            <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña">
+            <label for="password" >Contraseña</label>
+            <i class="bi bi-eye-slash position-absolute" id="showPassword" style="right: 10px; top: 35%; cursor: pointer;"></i>
+          </div>
+
+          <div class="form-floating">
+            <input type="number" class="form-control" id="telefono" placeholder="Ingrese telefono">
+            <label for="telefono" >Telefono</label>
+          </div>
+
+        </form>
+      `,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Agregar Usuario',
+      confirmButtonColor: '#0d6efd',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#dc3545',
+      preConfirm: () => {
+        const nombre = (Swal.getPopup()!.querySelector('#nombre') as HTMLInputElement).value;
+        const email = (Swal.getPopup()!.querySelector('#email') as HTMLInputElement).value;
+        const contraseña = (Swal.getPopup()!.querySelector('#password') as HTMLInputElement).value;
+        const telefono = parseInt((Swal.getPopup()!.querySelector('#telefono') as HTMLInputElement).value)
+
+        if (!nombre || !email || !contraseña || !telefono) {
+          Swal.showValidationMessage('Por favor, ingrese todos los datos');
+        }
+
+        const newUser: User = {
+          nombre: nombre,
+          email: email,
+          contraseña: contraseña,
+          telefono: telefono,
+          rol: 'empleado'
+        };
+
+        return newUser;
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._userServices.signIn(result.value).subscribe({
+          next: (v) => {
+            Swal.fire("Guardado!", "", "success");
+          },
+          error: (err: HttpErrorResponse) => {
+            Swal.fire("Error: " + err.error.message, "", "success");
+          },
+        })
       } else {
         this.editingUser = null;
         Swal.fire('Operación cancelada', '', 'info');
