@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="container d-flex flex-column align-items-center">
+    <div class="card w-75 p-4 shadow-sm">
+        <form class="form-inline mb-3" (ngSubmit)="onCardNumberChange(cardNumberInput.value)">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="cardNumberInput" class="sr-only">Número de Tarjeta</label>
+                <input type="number" class="form-control" id="cardNumberInput" placeholder="Número de Tarjeta"
+                    #cardNumberInput>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+        </form>
+    </div>
+    <br>
+    <div class="row w-100 justify-content-center">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Cantidad de Recargas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Cantidad de Descuentos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Transacciones Realizadas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center">Transacciones</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Tarjeta</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let transaccion of transacciones">
+                <td>{{ transaccion.id }}</td>
+                <td>{{ transaccion.monto }}</td>
+                <td>{{ transaccion.tipo }}</td>
+                <td>{{ transaccion.fecha | date:'short' }}</td>
+                <td>{{ transaccion.estado }}</td>
+                <td>{{ transaccion.tarjeta.card_number }}</td> <!-- Ajusta según el modelo de Tarjeta -->
+            </tr>
+        </tbody>
+    </table>
+</div>

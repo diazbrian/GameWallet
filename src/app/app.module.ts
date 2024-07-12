@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
+import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 import { DolarComponent } from './components/dolar/dolar.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
@@ -36,6 +37,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     FooterComponent,
     UsuariosComponent,
     TarjetasComponent,
+    TransaccionesComponent,
     DolarComponent
   ],
   imports: [
