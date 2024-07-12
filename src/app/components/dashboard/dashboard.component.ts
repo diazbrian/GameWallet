@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, SwiperOptions, Swiper } from 'swiper';
-
+import { interval } from 'rxjs';
 import { AuthGoogleService } from '../../services/auth-google.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../services/user.service';
@@ -29,27 +29,51 @@ export class DashboardComponent implements OnInit {
   };
   slides = [
     {
-      //link: 'https://www.google.com',
-      image: '../../../assets/img/ejemplo1.jpg',
+      image: '../../../assets/img/tarjeta-personalizada1.jpg',
     },
     {
-      //link: 'https://www.youtube.com',
-      image: '../../../assets/img/ejemplo2.jpg',
+      image: '../../../assets/img/tarjeta-personalizada2.jpg',
     },
     {
-      //link: 'https://www.facebook.com',
-      image: '../../../assets/img/ejemplo3.jpg',
+      image: '../../../assets/img/tarjeta-personalizada3.jpg',
     },
     {
-      //link: 'https://www.facebook.com',
-      image: '../../../assets/img/ejemplo4.jpg',
+      image: '../../../assets/img/tarjeta-argentina1.jpg',
     },
     {
-      //link: 'https://www.facebook.com',
-      image: '../../../assets/img/background-login3.jfif',
+      image: '../../../assets/img/tarjeta-argentina2.jpg',
     },
-
+    {
+      image: '../../../assets/img/tarjeta-argentina3.jpg',
+    },
   ];
+  slides2 = [
+    {
+      image: '../../../assets/img/seleccion1.jpg',
+    },
+    {
+      image: '../../../assets/img/seleccion2.jpg',
+    },
+    {
+      image: '../../../assets/img/seleccion3.jpg',
+    },
+    {
+      image: '../../../assets/img/tarjeta-argentina1.jpg',
+    },
+    {
+      image: '../../../assets/img/tarjeta-argentina2.jpg',
+    },
+    {
+      image: '../../../assets/img/tarjeta-argentina3.jpg',
+    },
+  ];
+
+  automatico(swiper: Swiper){
+    const segundos = interval(5000);
+    segundos.subscribe(() => {
+      swiper.slideNext();
+    })
+  }
 
   listUsers: Usuario[] = [];
 

@@ -1,60 +1,97 @@
 <app-navbar></app-navbar>
 
+<!--Informacion de la Pagina-->
+<section class="infoDePagina py-5 mt-5" id="infoDePagina">
+    <div class="container-lg py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-title text-center">
+                    <h1 class="fw-bold mb-2">GAME WALLET</h1>
+                    <h3 class="fw-bold mb-5">Diversion Garantizada</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <img src="../../../assets/img/ejemplo2.jpg" class="img-fluid" alt="Image" />
+            </div>
+            <div class="col-md-8">
+                <h3 class="display-5 text-center">Consigue tu Tarjeta Ahora!</h3>
+                <p class="text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad necessitatibus laboriosam voluptatum,
+                    eveniet deserunt omnis dolores voluptates aliquam quisquam rem ut eius, assumenda voluptas maiores
+                    quas repellendus porro natus possimus placeat, consequuntur harum dicta iusto qui! Unde ipsa ullam
+                    libero odio mollitia error cumque nemo recusandae enim reiciendis ipsum repellendus autem, illum
+                    voluptatibus excepturi in magni architecto aut molestias, voluptatem adipisci sapiente. Praesentium
+                    exercitationem dolorum esse blanditiis expedita porro qui tempora itaque, totam suscipit
+                    quisquam
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Carrusel de Tarjetas-->
 <div class="container">
-  <swiper [config]="config" >
-       <ng-template swiperSlide *ngFor="let slide of slides">
-          <!--<a [href]="slide.link" target="_blank"></a>-->
-           <a target="_blank">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="section-title text-center">
+                <h2 class="fw-bold mb-3 mt-5">Personaliza tu Tarjeta!</h2>
+            </div>
+        </div>
+    </div>
+    <swiper [config]="config" (swiper)="automatico($event)">
+        <ng-template swiperSlide *ngFor="let slide of slides">
+            <a>
                 <img [src]="slide.image" alt="foto" />
-           </a>
+            </a>
         </ng-template>
- </swiper>
+    </swiper>
 </div>
 
+<!--Contactanos-->
+<section class="infoDePagina py-5 mt-5" id="infoDePagina">
+    <div class="container-lg py-4">
+        <div class="row align-items-center">
+            <div class=" col-md-4">
+                <img src="../../../assets/img/ejemplo1.jpg" class="img-fluid" alt="Image" />
+            </div>
+            <div class=" col-md-8">
+                <h1 class="display-5 text-justify">Quieres Trabajar con Nosotros? Contactanos!</h1>
+                <h4 class="text-justify">
+                    Deja tu CV en una de Nuestras Sucursales
+                </h4>
+                <p class="text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad necessitatibus laboriosam voluptatum,
+                    eveniet deserunt omnis dolores voluptates aliquam quisquam rem ut eius, assumenda voluptas maiores
+                    quas repellendus porro natus possimus placeat, consequuntur harum dicta iusto qui! Unde ipsa ullam
+                    libero odio mollitia error cumque nemo recusandae enim reiciendis ipsum repellendus autem, illum
+                    voluptatibus excepturi in magni architecto aut molestias, voluptatem adipisci sapiente. Praesentium
+                    exercitationem dolorum esse blanditiis expedita porro qui tempora itaque, totam suscipit
+                    quisquam
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Carrusel de Esponsor Oficial-->
 <div class="container">
-  <div class="row align-items-start">
-    <div class="col-md-4 mb-3">
-      <div class="card-container">
-        <div [ngClass]="toggleProperty ? 'flipped' : ''" class="card">
-          <div class="front">
-            <ng-content select="flip-card-front"></ng-content>
-            <img src="../../../assets/img/background-login2.jfif" class="card-img-top" alt="...">
-            <div class="arrow-icon" (click)="toggle()">
-              <i class="ion-ios-arrow-back"></i>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="section-title text-center">
+                <h2 class="fw-bold mb-3 mt-5">Esponsor Oficial de la Seleccion!</h2>
             </div>
-          </div>
-          <div class="back">
-            <ng-content select="flip-card-back"></ng-content>
-            <img src="../../../assets/img/background-login3.jfif" class="card-img-top" alt="...">
-            <div class="arrow-icon" (click)="toggle()">
-              <i class="ion-ios-arrow-back"></i>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    
-    <div class="col-md-4 mb-3">
-      <div class="card-container">
-        <div [ngClass]="toggleProperty ? 'flipped' : ''" class="card">
-          <div class="front">
-            <ng-content select="flip-card-front"></ng-content>
-            <img src="../../../assets/img/background-login2.jfif" class="card-img-top" alt="...">
-            <div class="arrow-icon" (click)="toggle()">
-              <i class="ion-ios-arrow-back"></i>
-            </div>
-          </div>
-          <div class="back">
-            <ng-content select="flip-card-back"></ng-content>
-            <img src="../../../assets/img/background-login3.jfif" class="card-img-top" alt="...">
-            <div class="arrow-icon" (click)="toggle()">
-              <i class="ion-ios-arrow-back"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <swiper [config]="config" (swiper)="automatico($event)">
+        <ng-template swiperSlide *ngFor="let slide of slides2">
+            <a>
+                <img [src]="slide.image" alt="foto" />
+            </a>
+        </ng-template>
+    </swiper>
 </div>
 
 <app-footer></app-footer>
