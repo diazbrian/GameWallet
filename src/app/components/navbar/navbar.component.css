@@ -1,3 +1,9 @@
+.profile-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .logout-button{
     background-color: #dc3545;
     color: #fff;
@@ -11,4 +17,3 @@
 .logout-button:hover {
     background-color: #842029; /* Nuevo color de fondo al hacer hover */
 }
-
