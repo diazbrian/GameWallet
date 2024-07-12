@@ -22,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { DolarComponent } from './components/dolar/dolar.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -47,8 +48,8 @@ import { DolarComponent } from './components/dolar/dolar.component';
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    })
-
+    }),
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

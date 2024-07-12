@@ -54,7 +54,7 @@ export class SignInComponent {
       contraseña: this.password,
       // Convertir a tipo number
       telefono: parseInt(fullTel),
-      rol: this.rol
+      rol: 'empleado',
     }
 
     console.log(user);
