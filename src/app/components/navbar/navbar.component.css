@@ -1,14 +1,14 @@
-.login-button{
-    background-color: #009070;
+.logout-button{
+    background-color: #dc3545;
     color: #fff;
     font-size: 14px;
     padding: 8px 20px;
     border-radius: 50px;
     text-decoration: none;
-    transition: 8.3 background-color;
+    transition: background-color 0.3s ease; /* Duración de 0.3 segundos y tipo de transición 'ease' */
 }
 
-.login-button:hover {
-    background-color: #007856; /* Nuevo color de fondo al hacer hover */
+.logout-button:hover {
+    background-color: #842029; /* Nuevo color de fondo al hacer hover */
 }
 

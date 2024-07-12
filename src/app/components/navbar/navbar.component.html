@@ -19,11 +19,11 @@
           <a class="nav-link mx-lg-3 " routerLink="/tarjetas" routerLinkActive="active" class="nav-link">Tarjeta</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-lg-3" href="#" aria-disabled="true">Transaciones</a>
+          <a class="nav-link mx-lg-3"routerLink="/transacciones" routerLinkActive="active" aria-disabled="true">Transaciones</a>
         </li>
       </ul>
       <div class="d-flex">
-        <a class="login-button" routerLink="/login">Login</a>
+        <a class="logout-button" type="button" (click)="logout()">Logout</a>
       </div>
     </div>
   </div>

@@ -24,8 +24,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
-//import { DashboardModule } from './components/dashboard/dashboard.module';
+import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 import { DolarComponent } from './components/dolar/dolar.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { DolarComponent } from './components/dolar/dolar.component';
     UsuariosComponent,
     TarjetasComponent,
     FlipCardFrontComponent, FlipCardBackComponent,
+    TransaccionesComponent,
     DolarComponent
   ],
   imports: [
@@ -53,8 +55,8 @@ import { DolarComponent } from './components/dolar/dolar.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    //DashboardModule
     SwiperModule,
+    OAuthModule.forRoot()
   ],
   exports: [DashboardComponent, FlipCardFrontComponent, FlipCardBackComponent],
   providers: [],

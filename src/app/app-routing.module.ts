@@ -7,6 +7,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
+import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'usuarios', component: UsuariosComponent },
   { path: 'tarjetas', component: TarjetasComponent },
+  { path: 'transacciones', component: TransaccionesComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
