@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SwiperModule } from 'swiper/angular';
 
 // Animaciones
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { FlipCardFrontComponent } from './components/dashboard/flip-card-front';
+import { FlipCardBackComponent } from './components/dashboard/flip-card-back';
 
 // Modulos
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +40,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     FooterComponent,
     UsuariosComponent,
     TarjetasComponent,
+    FlipCardFrontComponent, FlipCardBackComponent,
     TransaccionesComponent,
     DolarComponent
   ],
@@ -51,8 +55,10 @@ import { OAuthModule } from 'angular-oauth2-oidc';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    SwiperModule,
     OAuthModule.forRoot()
   ],
+  exports: [DashboardComponent, FlipCardFrontComponent, FlipCardBackComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
