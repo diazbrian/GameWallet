@@ -16,11 +16,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export class DashboardComponent implements OnInit {
   toggleProperty = false;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   toggle() {
     this.toggleProperty = !this.toggleProperty;
   }
@@ -31,7 +26,6 @@ export class DashboardComponent implements OnInit {
     spaceBetween: 50,
     navigation: true,
     pagination: { clickable: true },
-    //scrollbar: { draggable: true },
   };
   slides = [
     {
