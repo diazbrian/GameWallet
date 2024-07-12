@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from '../../services/error.service';
+import { AuthGoogleService } from '../../services/auth-google.service';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +21,13 @@ export class LoginComponent {
     private toastr: ToastrService,
     private _userServices: UserService,
     private router: Router,
-    private _errorService: ErrorService
+    private _errorService: ErrorService,
+    private _authGoogleService: AuthGoogleService
   ) { }
 
   ngOnInit(): void {}
 
   login() {
-
     // Validacion
     if (this.username == '' || this.password == '') {
       this.toastr.error('Llena todos los campos', 'Error');
@@ -41,6 +42,7 @@ export class LoginComponent {
     this.loading = true;
     this._userServices.login(user).subscribe({
       next: (res) => {
+        this.toastr.success(`Bienvenido ${user.nombre}`, 'Login');
         this.router.navigate(['/dashboard']);
         console.log(res);
       },
@@ -50,7 +52,10 @@ export class LoginComponent {
       },
       complete: () => console.info('complete')
     })
+  }
 
+  loginWithGoogle() {
+    this._authGoogleService.loginWithGoogle();
   }
 
 }

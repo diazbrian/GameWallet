@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div *ngIf="!loading" class="body">
+  <div *ngIf="!loading" class="body glass-effect m-4">
     <img class="logo" src="../../../assets/img/usuario.png" alt="">
     <h1>Registrarse</h1>
 
@@ -27,15 +27,6 @@
         <input type="text" [(ngModel)]="telefono" class="form-control" placeholder="Teléfono">
       </div>
       <label></label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <select [(ngModel)]="rol" class="form-select" aria-label="Seleccione el rol">
-        <option value="" disabled selected>Seleccione el rol</option>
-        <option value="admin">Admin</option>
-        <option value="empleado">Empleado</option>
-      </select>
-      <label>Rol</label>
     </div>
 
     <div class="form-floating mb-3">

@@ -1,0 +1,49 @@
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+    background: url('../../../assets/img/background-login2.jfif') no-repeat center center;
+    background-size: cover; /* Ajusta esta propiedad según tus necesidades */
+  }
+  
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+.btn-google {
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 1px #ddd;
+    border-radius: 5px;
+}
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0;
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px;
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center;
+}
+
+.btn-google:hover {
+
+    background-color: #C23B33;
+    border-color: #C23B33;
+    color: #ffffff;
+}

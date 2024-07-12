@@ -14,9 +14,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UsuariosComponent {
 
-  // variables extra para el componente porque no se reconoce [ñ] en el html
-  password: string = '';
-
   // listUsers se usa en  './usuarios.component.html'
   listUsers: Usuario[] = [];
   editingUser: Usuario | null = null;
@@ -38,67 +35,103 @@ export class UsuariosComponent {
     });
   }
 
-  openEditModal(user: Usuario) {
-    console.log("aa");
-    const modelDiv = document.getElementById('myModal');
-    if (modelDiv != null) {
-      if (this.editingUser && this.editingUser.id === user.id) {
+  // Formulario para editar un usuario
+  openEditUserForm(user: Usuario) {
+    Swal.fire({
+      title: 'Editar Usuario',
+      html: `
+        <form id="addCardForm">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" value="${user.nombre}">
+            <label for="nombre" >Nombre</label>
+          </div>
 
-        // muestra la contrasena actual del usuario en el componente
-        this.password = user.contraseña;
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" placeholder="Email" value="${user.email}">
+            <label for="email" >Email</label>
+          </div>
 
-        this.editingUser = null;
-      } else {
-        this.password = user.contraseña;
-        this.editingUser = { ...user };
+          <div class="form-floating ">
+            <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña" value="${user.contraseña}">
+            <label for="password" >Contraseña</label>
+            <i class="bi bi-eye-slash position-absolute" id="showPassword" style="right: 10px; top: 35%; cursor: pointer;"></i>
+          </div>
+
+          <div class="form-floating">
+            <input type="number" class="form-control" id="telefono" placeholder="Ingrese telefono" value="${user.telefono}">
+            <label for="telefono" >Telefono</label>
+          </div>
+
+          <div class="form-group">
+            <select id="rol" class="form-select">
+              <option value="${user.rol}" disabled selected>Seleccione el rol</option>
+              <option value="admin">Admin</option>
+              <option value="empleado">Empleado</option>
+            </select>
+          </div>
+          </script>
+        </form>
+      `,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      confirmButtonColor: '#198754',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#dc3545',
+      preConfirm: () => {
+        const nombre = (Swal.getPopup()!.querySelector('#nombre') as HTMLInputElement).value;
+        const email = (Swal.getPopup()!.querySelector('#email') as HTMLInputElement).value;
+        const contraseña = (Swal.getPopup()!.querySelector('#password') as HTMLInputElement).value;
+        const telefono = parseInt((Swal.getPopup()!.querySelector('#telefono') as HTMLInputElement).value)
+        const rol = (Swal.getPopup()!.querySelector('#rol') as HTMLInputElement).value;
+
+        this.editingUser = {
+          id: user.id,
+          nombre: nombre,
+          email: email,
+          contraseña: contraseña,
+          telefono: telefono,
+          creacion: user.creacion,
+          rol: rol
+        };
       }
-      modelDiv.style.display = 'block';
-      console.log("insi");
-    }
-  }
+    }).then((result) => {
+      if (result.isConfirmed) {
+          this.saveUser();
+      } else {
+        this.editingUser = null;
+        Swal.fire('Operación cancelada', '', 'info');
+      }
+    });
 
-  closeEditModal() {
-    const modelDiv = document.getElementById('myModal');
-    if (modelDiv != null) {
-      modelDiv.style.display = 'none';
-    }
+    document.getElementById('showPassword')!.addEventListener('click', function() {
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      const icon = document.getElementById('showPassword') as HTMLElement;
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      }
+    });
   }
 
   deleteUser(user: Usuario): void {
     this.confirmDelMsg(user);
   }
 
-  toggleEditForm(user: Usuario): void {
-    if (this.editingUser && this.editingUser.id === user.id) {
-
-      // muestra la contrasena actual del usuario en el componente
-      this.password = user.contraseña;
-
-      this.editingUser = null;
-    } else {
-      this.password = user.contraseña;
-      this.editingUser = { ...user };
-    }
-  }
-
   saveUser(): void {
-    // asigna la componente password a editingUser.contraseña
-    // (no es posible hacer this.editingUser.contraseña = this.password)
-    this.editingUser?.contraseña ? this.editingUser.contraseña = this.password : null;
-
-    console.log(this.editingUser, this.editingUser?.id);
-
     this._userServices.updateUser(this.editingUser?.id!, this.editingUser!).subscribe({
       next: () => {
-        // TODO: modularizar mensajes en service
-        // pasar string `guardado` o `eliminado` por parametro
         Swal.fire({
           title: "Guardado!",
           text: "El usuario ha sido actualizado con exito.",
           icon: "success"
         });
         this.getUsers();
-        this.closeEditModal();
         this.editingUser = null;
       },
       error: (err: HttpErrorResponse) => {
@@ -108,37 +141,33 @@ export class UsuariosComponent {
           icon: "error"
         });
       }
-
     })
-  }
-
-  cancelEdit(): void {
-    this.closeEditModal();
-    this.editingUser = null;
   }
 
   // confirmar eliminacion
   confirmDelMsg(user: Usuario) {
     Swal.fire({
       title: '¿Estas seguro de eliminar este usuario?',
-      text: "nombre: " + user.nombre + ", id: " + user.id,
+      html: `
+        <p>ID: <b>${user.id}</b></p>
+        <p>Nombre: <b>${user.nombre}</b></p>
+        <p>Usuario: <b>${user.email}</b></p>
+        <p>Rol: <b>${user.rol}</b></p>
+      `,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#dc3545',
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
         this._userServices.deleteUser(user.id).subscribe({
           next: () => {
-            // TODO: modularizar mensajes en service
-            // pasar string `guardado` o `eliminado` por parametro
             Swal.fire({
               title: "Eliminado!",
               text: "El usuario ha sido eliminado con exito.",
               icon: "success"
             });
-            // Actualizar la lista de usuarios
+            // Actualiza la lista de usuarios en el frontend sin hacer una solicitud al backend
             this.listUsers = this.listUsers.filter(u => u.id !== user.id);
           },
           error: (err: HttpErrorResponse) => {

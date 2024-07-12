@@ -22,6 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { TransaccionesComponent } from './components/transacciones/transacciones.component';
+import { DolarComponent } from './components/dolar/dolar.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { TransaccionesComponent } from './components/transacciones/transacciones
     FooterComponent,
     UsuariosComponent,
     TarjetasComponent,
-    TransaccionesComponent
+    TransaccionesComponent,
+    DolarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +50,8 @@ import { TransaccionesComponent } from './components/transacciones/transacciones
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    })
-
+    }),
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

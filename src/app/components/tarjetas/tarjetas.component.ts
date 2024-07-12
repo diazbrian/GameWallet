@@ -29,14 +29,14 @@ export class TarjetasComponent {
       }));
     });
   }
-  
+
   crearTarjeta(saldo: number, card_number: number): void {
     this.tarjetaService.createTarjeta(saldo,card_number ).subscribe(response => {
       console.log('Tarjeta creada:', response);
       this.obtenerTarjetas();
     });
   }
-  
+
   descontarSaldo(): void {
     this.tarjetaService.descontarSaldo(this.idTarjeta, this.cantidad).subscribe(response => {
       console.log('Saldo descontado:', response);
@@ -65,7 +65,7 @@ export class TarjetasComponent {
           </div>
         </form>
       `,
-      showCloseButton: true, 
+      showCloseButton: true,
       showCancelButton: true,
       confirmButtonText: 'Agregar',
       preConfirm: () => {
@@ -82,6 +82,44 @@ export class TarjetasComponent {
         const { cardNumber, cardBalance } = result.value;
         this.crearTarjeta(cardBalance, cardNumber);
       }else {
+        Swal.fire('Operación cancelada', '', 'info');
+      }
+    });
+  }
+
+  editCard(card: Tarjeta) {
+    Swal.fire({
+      title: 'Tarjeta N° ' + card.card_number,
+      html: `
+        <form id="addCardForm">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="cardBalance" placeholder="Ingrese el saldo">
+            <label for="cardBalance" >Saldo </label>
+          </div>
+          <div class="mb-3">
+            <button type="button" class="btn btn-success" onclick="document.getElementById('cardBalance').value=500">$500</button>
+            <button type="button" class="btn btn-success" onclick="document.getElementById('cardBalance').value=1000">$1000</button>
+            <button type="button" class="btn btn-success" onclick="document.getElementById('cardBalance').value=1500">$1500</button>
+            <button type="button" class="btn btn-success" onclick="document.getElementById('cardBalance').value=2000">$2000</button>
+          </div>
+        </form>
+      `,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Recargar',
+      preConfirm: () => {
+        const cardBalance = (Swal.getPopup()!.querySelector('#cardBalance') as HTMLInputElement).value;
+        if (!cardBalance) {
+          Swal.showValidationMessage('Ingrese un monto');
+        }
+        this.cantidad = parseInt(cardBalance);
+        this.idTarjeta = card.id;
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Recargaste! $" + this.cantidad, "", "success");
+        this.recargarSaldo();
+      } else {
         Swal.fire('Operación cancelada', '', 'info');
       }
     });
